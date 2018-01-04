@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="ru" trgLang="en">
+  <file id="messages.en">
+    <unit id="DiImtSN">
+      <notes>
+        <note category="file-source" priority="1">app\Resources\views\base.html.twig:5</note>
+      </notes>
+      <segment>
+        <source>Welcome</source>
+        <target>Welcome</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

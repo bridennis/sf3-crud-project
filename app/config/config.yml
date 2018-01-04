@@ -6,11 +6,11 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: ru
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -65,3 +65,12 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+translation:
+  locales: ["en", "ru"]
+  configs:
+    app:
+      dirs: ["%kernel.root_dir%/Resources/views", "%kernel.root_dir%/../src"]
+      output_dir: "%kernel.root_dir%/Resources/translations"
+      excluded_names: ["*TestCase.php", "*Test.php"]
+      excluded_dirs: [cache, data, logs]
