@@ -1,0 +1,4 @@
+security:
+  login:
+    username: Логин
+    submit: Авторизоваться

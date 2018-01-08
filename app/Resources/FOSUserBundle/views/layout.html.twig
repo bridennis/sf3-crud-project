@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% set title = 'Авторизоваться' %}
+{% set title = 'authorize.title'|trans %}
 
 {% block body %}
 
@@ -15,7 +15,7 @@
             </div>
 
             <div class="alert alert-info" role="alert">
-                Тестовые пользователи (имя / пароль):<br>
+                {{ 'authorize.alert_info.title'|trans }}<br>
                 <ul>
                     <li><b>user</b> / <b>123456</b></li>
                     <li><b>admin</b> / <b>654321</b></li>

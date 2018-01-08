@@ -1,0 +1,7 @@
+dashboard: Панель управления
+orders: Заказы
+
+authorize:
+  title: Авторизоваться
+  alert_info:
+    title: Тестовые пользователи (имя / пароль):

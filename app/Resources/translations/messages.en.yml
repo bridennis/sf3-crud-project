@@ -1,0 +1,8 @@
+dashboard: Dashboard
+orders: Orders
+
+authorize:
+  title: Authorize
+  alert_info:
+    title: Default users (login / password):
+
