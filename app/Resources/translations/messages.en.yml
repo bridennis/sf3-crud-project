@@ -1,8 +1,28 @@
 dashboard: Dashboard
 orders: Orders
+apply: Apply
+edit: Edit
+delete: Delete
+cancel: Cancel
+save: Save
 
 authorize:
   title: Authorize
   alert_info:
-    title: Default users (login / password):
+    title: 'Default users (login / password):'
 
+order:
+  id: ID
+  date: Date
+  description: Description
+  order_cost: Order cost
+  user: User
+  action: Action
+  create: Create Order
+  title_create: Create order
+  title_edit: Edit order
+  date_filter:
+    from: 'Filter by date: from'
+    to: to
+    start: Date from
+    stop: Date to

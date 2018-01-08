@@ -1,7 +1,28 @@
-dashboard: Панель управления
+dashboard: 'Панель управления'
 orders: Заказы
+apply: Применить
+edit: Редактировать
+delete: Удалить
+cancel: Отмена
+save: Сохранить
 
 authorize:
   title: Авторизоваться
   alert_info:
-    title: Тестовые пользователи (имя / пароль):
+    title: 'Тестовые пользователи (имя / пароль):'
+
+order:
+  id: ID
+  date: Датa размещения
+  description: Описание
+  order_cost: 'Сумма заказа'
+  user: Пользователь
+  action: Действие
+  create: 'Создать заказ'
+  title_create: 'Создание заказа'
+  title_edit: 'Редактирование заказа'
+  date_filter:
+    from: 'Фильтр по дате размещения: с'
+    to: по
+    start: Дата с
+    stop: Дата по
