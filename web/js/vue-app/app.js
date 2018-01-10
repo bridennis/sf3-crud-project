@@ -141,6 +141,7 @@ var vm = new Vue({
 			
 				$.ajax({
 					url: '/orders/' + id,
+                    dataType: 'json',
 				})
 				.done( function (data) {
 					
