@@ -1,18 +1,51 @@
-crud-project
-============
+SPA CRUD-PROJECT
+================
 
-[Symfony 3](https://symfony.com/) + [VueJS 2](https://ru.vuejs.org/index.html)
+An example of my first step in Symfony framework  
 
-Front-end
+#### Back-end
+ - Apache 2.x
+ - MariaDB 5.5
+ - PHP 7.1
+ - [Symfony 3](https://symfony.com/)
+    - [Symfony Translation Bundle](http://php-translation.readthedocs.io/en/latest/symfony/index.html) ([github](https://github.com/php-translation/symfony-bundle))
+    - [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle)
+    
+#### Front-end
+ - [VueJS 2](https://ru.vuejs.org/index.html)
+    - [VeeValidate](http://vee-validate.logaretm.com/) - validator
+    - [UIV](https://uiv.wxsm.space/) - UI components
  - Bootstrap 3
- - VueJS 2
 
-Used bundles
-- [Symfony Translation Bundle](http://php-translation.readthedocs.io/en/latest/symfony/index.html) ([github](https://github.com/php-translation/symfony-bundle))
-- FOSUserBundle
+Configuration
+-------------
 
+### Database
 
-Create user:
-    php bin\console fos:user:create
+Set the values of parameters in the parameters file `app\config\parameters.yml` e.g.:
 
-A Symfony project created on January 3, 2018, 7:01 pm.
+```php
+parameters:
+    database_host: 127.0.0.1
+    database_port: 3306
+    database_name: sf3_order_db
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: postmaster@localhost.ru
+    mailer_password: null
+    secret: 6960e13aedae1234b65a38000a2c0736bc0621f7
+```
+
+The file `sf3_order_db.sql` is a MySQL dump file (InnoDB engine)
+
+### FAQ
+
+How to create a new user account?
+
+`php bin/console fos:user:create`
+
+How to add an administrator role to a user account?
+
+`php bin/console fos:user:promote <account_name> ROLE_ADMIN`
