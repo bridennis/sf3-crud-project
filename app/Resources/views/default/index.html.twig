@@ -101,16 +101,16 @@
 				<modal v-model="createOrderForm.show" title="{{ 'order.title_create'|trans }}" :backdrop="false">
 
 					<div class="control-group">
-						<label class="control-label" for="descr">{{ 'order.descr'|trans }}:</label>
+						<label class="control-label" for="descr">{{ 'order.description'|trans }}:</label>
 						<div class="controls">
-							<textarea v-model="createOrderForm.descr" name="descr" class="wide" rows="4" v-validate="'required|max:255'" data-vv-as="{{ 'order.descr'|trans }}"></textarea>
+							<textarea v-model="createOrderForm.descr" name="descr" class="wide" rows="4" v-validate="'required|max:255'" data-vv-as="{{ 'order.description'|trans }}"></textarea>
 								<alert v-if="errors.has('descr')" type="warning">{% verbatim %}{{ errors.first('descr') }}{% endverbatim %}</alert>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="cost">{{ 'order.order_cost'|trans }}:</label>
 						<div class="controls">
-							<input v-model="createOrderForm.cost" type="text" name="cost" class="wide" value="0.0" v-validate="'required|decimal:20'" data-vv-as="{{ 'order.order_cost'|trans }}" />
+							<input v-model="createOrderForm.cost" type="text" name="cost" class="wide" value="0.0" v-validate="'required|decimal:20|min_value:0'" data-vv-as="{{ 'order.order_cost'|trans }}" />
 								<alert v-if="errors.has('cost')" type="warning">{% verbatim %}{{ errors.first('cost') }}{% endverbatim %}</alert>
 						</div>
 					</div>
@@ -130,16 +130,16 @@
 				<modal v-model="editOrderForm.show" title="{{ 'order.title_edit'|trans }}" :backdrop="false">
 
 					<div class="control-group">
-						<label class="control-label" for="descr">{{ 'order.descr'|trans }}:</label>
+						<label class="control-label" for="descr">{{ 'order.description'|trans }}:</label>
 						<div class="controls">
-							<textarea v-model="editOrderForm.descr" name="descr" class="wide" rows="4" v-validate="'required|max:255'" data-vv-as="{{ 'order.descr'|trans }}"></textarea>
+							<textarea v-model="editOrderForm.descr" name="descr" class="wide" rows="4" v-validate="'required|max:255'" data-vv-as="{{ 'order.description'|trans }}"></textarea>
 								<alert v-if="errors.has('descr')" type="warning">{% verbatim %}{{ errors.first('descr') }}{% endverbatim %}</alert>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="cost">{{ 'order.order_cost'|trans }}:</label>
 						<div class="controls">
-							<input v-model="editOrderForm.cost" type="text" name="cost" class="wide" value="0.0" v-validate="'required|decimal:20'" data-vv-as="{{ 'order.order_cost'|trans }}" />
+							<input v-model="editOrderForm.cost" type="text" name="cost" class="wide" value="0.0" v-validate="'required|decimal:20|min_value:0'" data-vv-as="{{ 'order.order_cost'|trans }}" />
 								<alert v-if="errors.has('cost')" type="warning">{% verbatim %}{{ errors.first('cost') }}{% endverbatim %}</alert>
 						</div>
 					</div>
