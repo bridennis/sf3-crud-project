@@ -17,25 +17,26 @@ An example of my first step in Symfony framework
     - [UIV](https://uiv.wxsm.space/) - UI components
  - Bootstrap 3
 
-Configuration
+Installation
 -------------
 
-### Database
+Move into the root of your project directory and run:
 
-Set the values of parameters in the parameters file `app\config\parameters.yml` e.g.:
+`composer install`
+
+Set the values of parameters e.g.:
 
 ```php
-parameters:
-    database_host: 127.0.0.1
-    database_port: 3306
-    database_name: sf3_order_db
-    database_user: root
-    database_password: root
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: postmaster@localhost.ru
-    mailer_password: null
-    secret: 6960e13aedae1234b65a38000a2c0736bc0621f7
+database_host: 127.0.0.1
+database_port: 3306
+database_name: sf3_order_db
+database_user: root
+database_password: root
+mailer_transport: smtp
+mailer_host: 127.0.0.1
+mailer_user: postmaster@localhost.ru
+mailer_password: null
+secret: 6960e13aedae1234b65a38000a2c0736bc0621f7
 ```
 
 The file `sf3_order_db.sql` is a MySQL dump file (InnoDB engine)
