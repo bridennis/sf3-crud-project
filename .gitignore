@@ -1,0 +1,5 @@
+.idea/
+vendor/
+var/
+!var/SymfonyRequirements.php
+app/config/parameters.yml

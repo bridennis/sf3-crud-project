@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Order;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\User;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,13 +13,17 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * REST контроллер заказов
  *
- *	Доступ к контроллеру только для аутентифицированных пользователей (авторизацию настраивай в security.yml)
+ * Доступ к контроллеру только для аутентифицированных пользователей (авторизацию настраивай в security.yml)
  *
- *	GET /orders - список всех заказов, если текущий пользователь администратор, или только тех заказов, которые созданы текущим пользователем
- *	GET /orders/1 - просмотр заказа с ID = 1, если он был создан текущим пользователем или если текущий пользователь администратор
- *	POST /orders - добавление заказа
- *	PUT /orders/1 - обновление заказа с ID = 1, если он был создан текущим пользователем или если текущий пользователь администратор
- *	DELETE /orders/1 - удаление заказа с ID = 1, если он был создан текущим пользователем или если текущий пользователь администратор
+ * GET /orders - список всех заказов, если текущий пользователь администратор, или только тех заказов,
+ *  которые созданы текущим пользователем
+ * GET /orders/1 - просмотр заказа с ID = 1, если он был создан текущим пользователем
+ *  или если текущий пользователь администратор
+ * POST /orders - добавление заказа
+ * PUT /orders/1 - обновление заказа с ID = 1, если он был создан текущим пользователем
+ *  или если текущий пользователь администратор
+ * DELETE /orders/1 - удаление заказа с ID = 1, если он был создан текущим пользователем
+ *  или если текущий пользователь администратор
  *
  * Class OrderController
  * @package AppBundle\Controller
@@ -27,8 +32,7 @@ class OrderController extends Controller
 {
 
     /**
-     * @Route("/orders/{id}")
-     * @Method("DELETE")
+     * @Route("/orders/{id}", methods={"DELETE"})
      *
      * @param $id Order's unique ID
      * @return Response
@@ -42,12 +46,12 @@ class OrderController extends Controller
         if (!$order) {
             return new Response('', 404);
         } else {
-
+            /** @var User $user */
             $user = $this->get('security.token_storage')->getToken()->getUser();
 
             if (
-                $user->getId() != $order->getUser()->getId() &&
-                !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')
+                $user->getId() != $order->getUser()->getId()
+                && !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')
             ) {
                 return new Response('', 403);
             }
@@ -57,12 +61,10 @@ class OrderController extends Controller
 
             return new Response('');
         }
-
     }
 
     /**
-     * @Route("/orders/{id}")
-     * @Method("PUT")
+     * @Route("/orders/{id}", methods={"PUT"})
      *
      * @param $id Order's unique ID
      * @param $request
@@ -72,12 +74,13 @@ class OrderController extends Controller
     public function updateAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        /** @var Order $order */
         $order = $em->getRepository(Order::class)->find($id);
 
         if (!$order) {
             return new Response('', 404);
         } else {
-
+            /** @var User $user */
             $user = $this->get('security.token_storage')->getToken()->getUser();
 
             if (
@@ -94,22 +97,18 @@ class OrderController extends Controller
             $errors = $validator->validate($order);
 
             if (count($errors) > 0) {
-
                 return new Response('', 500);
 
             } else {
-
                 $em->flush();
 
                 return new Response(json_encode($this->orderToArr($order)));
             }
         }
-
     }
 
     /**
-     * @Route("/orders")
-     * @Method("POST")
+     * @Route("/orders", methods={"POST"})
      *
      * @param $request
      * @return Response
@@ -129,22 +128,18 @@ class OrderController extends Controller
         $errors = $validator->validate($order);
 
         if (count($errors) > 0) {
-
             return new Response('', 500);
 
         } else {
-
             $em->persist($order);
             $em->flush();
 
             return new Response(json_encode($this->orderToArr($order)));
         }
-
     }
 
     /**
-     * @Route("/orders/{id}")
-     * @Method("GET")
+     * @Route("/orders/{id}", methods={"GET"})
      *
      * @param $id Order's unique ID
      * @return Response
@@ -158,6 +153,7 @@ class OrderController extends Controller
             $criteria += ["user" => $this->get('security.token_storage')->getToken()->getUser()->getId()];
         }
 
+        /** @var Order $order */
         $order = $this->getDoctrine()
             ->getRepository("AppBundle:Order")
             ->findOneBy($criteria);
@@ -170,8 +166,7 @@ class OrderController extends Controller
     }
 
     /**
-     * @Route("/orders")
-     * @Method("GET")
+     * @Route("/orders", methods={"GET"})
      */
 
     public function indexAction()
@@ -189,6 +184,7 @@ class OrderController extends Controller
         }
 
         $result = [];
+        /** @var Order $order */
         foreach ($orders as $order) {
             $result[] = $this->orderToArr($order);
         }
@@ -202,7 +198,7 @@ class OrderController extends Controller
      * @param Order $order
      * @return array
      */
-    private function orderToArr(Order $order)
+    private function orderToArr(Order $order): array
     {
         return [
             "id" => $order->getId(),

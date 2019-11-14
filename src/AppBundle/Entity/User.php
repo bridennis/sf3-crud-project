@@ -27,9 +27,9 @@ class User extends BaseUser
      */
     private $orders;
 
+    /** @noinspection PhpMissingParentConstructorInspection */
     public function __construct()
     {
         $this->orders = new ArrayCollection();
     }
-
 }

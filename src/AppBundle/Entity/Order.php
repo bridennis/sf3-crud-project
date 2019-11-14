@@ -2,10 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * Order entity
@@ -124,6 +124,6 @@ class Order
      */
     public function prePersist()
     {
-        $this->order_date = new \DateTime();
+        $this->order_date = new DateTime();
     }
 }
